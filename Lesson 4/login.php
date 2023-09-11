@@ -23,6 +23,7 @@ if(empty($uname)) {
     exit();
 }
 
+
 $sql = "SELECT * from users WHERE user_name='$uname' AND password='$pass'";
 
 $result = mysqli_query($conn, $sql);
@@ -36,12 +37,8 @@ if(mysqli_num_rows($result) === 1) {
         $_SESSION['id'] = $row['id'];
         header("Location: home.php");
         exit();
-    } else {
-        header("Location: index.php?error=Incorrect User Name or Password");
-        exit();
     }
-}
-else {
-    header("Location: index.php");
+} else {
+    header("Location: index.php?error=Incorrect Username or Password");
     exit();
 }
